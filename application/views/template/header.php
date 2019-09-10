@@ -13,8 +13,9 @@
     <script src="<?=base_url()?>assets/vendor/chosen-js/chosen.jquery.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="<?=base_url()?>assets/css/style.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/vendor/DataTables-1.10.18/css/datatables.bootstrap4.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/datatables.min.css">
-    <link rel="stylesheet" href="<?=base_url()?>assets/vendor/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/vendor/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/bootstrap.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/vendor/chosen-js/chosen.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
@@ -75,8 +76,8 @@
             <div class="nav-item">
                 <!-- <div class="circle"></div> -->
                 <ul>
-                    <li class="Nav-btn Nav-Dashboard"><span onclick="Page('Dashboard')">Dashboard</span></li>
-                    <li class="Nav-btn Nav-Data"><span onclick="Page('MasterData')">MasterData</span></li>
+                    <li class="Nav-btn Nav-Dashboard"><span onclick="window.location.href = 'Dashboard'">Dashboard</span></li>
+                    <li class="Nav-btn Nav-Data"><span onclick="window.location.href = 'Master'">MasterData</span></li>
                     <li class="Nav-btn Nav-Pay"><span onclick="Page('v_pembayaran')">Pembayaran</span></li>
                     <!-- <li>Report</li> -->
                 </ul>

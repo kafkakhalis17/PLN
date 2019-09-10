@@ -7,5 +7,5 @@ class M_Pelanggan extends CI_Model
    {
     return $this->db->get('pelanggan');
    }
-  
+
 }
