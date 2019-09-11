@@ -6,7 +6,7 @@
 			<table class="DataTable">
 					<thead>
 						<tr>
-							<td>ID</td>
+							<td>ID Penggunaan</td>
 							<td>ID Pelanggan</td>
 							<td>Bulan</td>
 							<td>Tahun</td>
