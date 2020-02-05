@@ -1,0 +1,739 @@
+body, html{
+    margin: 0px;
+    padding: 0px;
+    height: 100% !important;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(250, 2550, 250);
+    overflow-x: hidden;
+}
+/* Login Section */
+.container-lg-form{
+    margin: auto 0px;
+}
+
+#logo-pln-lg{
+    padding: 15px;
+    right: 0px;
+    top: -56px;
+    position: absolute;
+}
+.login-title{
+    font-size: 18px;
+    font-weight: 500;
+}
+.alert-login{
+    position: absolute;
+    top: -100px !important;
+}
+.login-wrapper{
+   width: 500px;
+   position: relative;
+   top: 210px;
+   margin: 0px auto;
+}
+.app{
+    position: relative;
+    top:-700px;
+}
+
+.card-login{
+    width: 400px;
+    margin: 0px auto;
+}
+#login-title{
+    text-align: center;
+    color: #0059ff;
+    
+}
+
+.nav-mast{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color:white; 
+    -webkit-box-shadow: 1px 19px 58px -27px rgba(158,158,158,1);
+    -moz-box-shadow: 1px 19px 58px -27px rgba(158,158,158,1);
+    box-shadow: 1px 19px 58px -27px rgba(158,158,158,1);
+
+}
+.logo-src{
+    background-size: 42px !important;
+    width: 38px !important;
+    height: 58px !important;
+}
+.logo-name{
+    position: absolute;
+    top: 18px;
+    margin-left: 50px;
+    font-weight: 500;
+}
+
+.nav-prof{
+    padding: 40px !important;
+}
+
+.page-header{
+    padding: 20px;
+}
+.page-header .page-title{
+    padding: 0px;
+}
+
+.page-header ul {
+    position: absolute;
+    right: 20px;
+}
+.page-header ul li {
+    float: left;
+    list-style: none;
+    font-size: 26px;
+    padding: 10px;
+    display: inline;
+}
+.section{
+    z-index: unset !important;
+}
+
+.modal{
+    /* z-index: 1041 !important; */
+}
+
+.inner-head{
+    right: 100px;
+    position: absolute;
+    width: 500px;
+    height: 50px;
+    box-shadow: 2px 2px 12px rgb(170, 170, 170);
+}
+
+.splash-screen{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    animation: fadeOut 1s 3s forwards;
+}
+
+
+.load-screen{
+   position: relative;
+   width: 500px !important;
+   margin: 0px auto;
+   text-align: center;
+   top: 200px;
+
+}
+.loading{
+    animation-duration: 2.1s;
+}
+#bolt-logo{
+    color: #F7BE16;
+    font-size: 120px;
+}
+
+
+
+.loading-text{
+    color: #F7BE16;
+    text-align: center;
+    font-size: 20px;
+}
+
+.webtitle{
+    padding: 10px;
+    color: white;
+    font-size: 17px;
+    font-weight:bold;
+    display: block;
+    transform: rotate(90deg);
+}
+.page-title{
+    position: absolute;
+    color: #216583;
+    float: left;
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 40px;
+}
+.clock-container{
+    border-radius: 10px;
+    position: absolute;
+    right: 110px;
+    top: 20px;
+    background-color: #00ff4c;
+    padding: 10px 20px;
+}
+
+.container-dashboard{
+    position: relative;
+    width: 100%;
+    top: 145px;
+    left: 80px;
+}
+/* 
+nav{
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    position: fixed;
+    height: 100%;
+    left: 0px;
+    width: 40px;
+    top: 0px;
+    z-index: 10;
+    overflow: hidden;
+    box-shadow: 2px 0px 30px #586172;
+    transition: all 1s;
+}
+
+nav:hover{
+    width: 270px;
+} */
+
+.nav-bg{
+    background: rgb(0,255,132);
+    background: linear-gradient(121deg, rgba(0,255,132,1) 0%, rgba(0,121,218,1) 100%);
+}
+
+.btn-config{
+    display: block;
+    bottom: 0px;
+    position: relative;
+    color: white;
+    font-size: 25px;
+    width: 10px !important;
+}
+
+.inner-nav{
+    height: 100%;
+    width: 40px;
+    background-color: #F7BE16;
+}
+
+
+.inner-nav:hover{
+   cursor: pointer;
+}
+
+.side-nav{
+    position: absolute;
+    top: 0px;
+    left: 40px;
+    height: 100%;
+    width: 270px;
+    background-color:#00818a;
+}
+
+/* .nav-item{
+    position: relative;
+    top: 120px;
+
+} */
+
+.nav-item .circle{
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  background-color: #394A6D;
+
+}
+
+.nav-item ul li{
+    list-style: none;
+    margin: 30px 0px;
+    padding: 10px;
+    font-size: 17px;
+    color: #fff;
+    font-weight: bold;
+}
+.Nav-btn{
+    cursor: pointer;
+}
+.Nav-btn::before{
+    background-size: 15px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    content:"";
+}
+.Nav-btn:hover::before{
+    background-size: 15px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    content:"";
+}
+/* .Nav-Data::before{
+    background-image: url("table-white.svg");
+
+}
+.Nav-Data:hover::before   {
+    background-image: url("table-yellow.svg");
+
+}
+
+.Nav-Dashboard::before{
+    background-image: url("Dashboard-white.svg");
+
+}
+
+.Nav-Dashboard:hover::before   {
+    background-image: url("Dashboard-yellow.svg");
+
+}
+
+.Nav-Pay::before{
+    background-image: url("money-white.svg");
+
+}
+.Nav-Pay:hover::before   {
+    background-image: url("money-yellow.svg"); */
+/* 
+} */
+
+
+
+
+.nav-item ul li:hover{
+    transition: all 0.4s;
+    color: #3c9d9b;
+    font-weight: bold;
+    background-color: white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: -30px;
+    border-bottom-right-radius: -30px;
+}
+.open-nav{
+    transition: all 0.4s;
+    color: rgb(243, 0, 223) !important;
+    font-weight: bold;
+    background-color: white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: -30px;
+    border-bottom-right-radius: -30px;
+}
+
+
+/* .open-Dashboard::before{
+    background-image: url("Dashboard-yellow.svg") !important;
+
+} page-header nav {
+   right: 12px;
+    position: absolute;
+    top: 60page-header nav ul li{
+    float: left;
+    list-style: none;
+    padding: page-header nav ul li .link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 21px;
+}
+.dropdown {
+    color: #fff;
+    font-size: 21px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    text-decoration: none;
+    color: rgb(2, 223, 252);
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+  .dropdown-content a{
+    text-decoration: none;
+    color: rgb(3, 42, 148);
+  }
+
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  } */
+
+.body{
+    top: 0px;
+    width: 1366px;
+    left: 40px;
+    position: relative;
+    transition: 1.14s all;
+}
+.body-active{
+    left: 270px;
+}
+.page{
+   width: 94%;
+   position: relative;
+}
+
+
+.card{
+    box-shadow: -1px 7px 30px -1px rgba(143,143,143,0.62) !important;     
+}
+
+.card-title{
+    font-size: 20px !important;
+}
+
+.page-hide{
+    display: none;
+    transition: all 1s;
+}
+.icon-f{
+    top: -5px !important;
+}
+
+.search input{
+    width: 320px;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+}
+.search input:focus{
+    border: none;
+    outline: none;
+}
+
+.search {
+    width: 380px;
+    box-shadow: 0px 0px 5px rgb(143, 143, 143);
+    border-radius: 10px;
+    position: absolute;
+    top: 20px;
+    left: 120px;
+    background-color: white
+}
+
+.search-box{
+    position: relative;
+    top: -30px;
+    left: 20px;
+   box-shadow: 0px 0px 47px -2px rgba(189,189,189,1);
+    width: 300px;
+    padding: 30px 30px 30px 30px;
+    border-radius: 20px;
+}
+
+.search-date-box{
+    position: relative;
+    top: 150px;
+    left: 20px;
+   box-shadow: 0px 0px 47px -2px rgba(189,189,189,1);
+    width: 300px;
+    padding: 30px 30px 30px 30px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.t-search tr td, .t-search tr th{
+    padding: 8px;
+    font-size: 17px;
+}
+
+
+
+
+#Search-title{
+    position: relative;
+    display: inline-block;
+    top: 0px;
+    width: 100%;
+}
+
+#data-container{
+    position: absolute;
+    top: 120px;
+    left: 430px;
+    width: 700px;
+    padding-bottom: 50px;
+}
+
+.vl{
+  top: 120px;
+  left: 380px;
+  position: absolute;
+  border-left: 4px solid #394A6D;
+  height: 500px;
+}
+
+#Data-box{
+    position: relative;
+    margin-top: 30px;
+}
+.t-bayar{
+    width: 125% !important;
+    
+}
+.t-bayar thead td{
+    text-align: center;
+
+}
+
+.btn-bayar{
+    position: relative;
+    float: right;
+    right: 0px;
+}
+
+.t-Datap tr td{
+    padding-right: 30px;
+}
+
+/* .t-bayar{
+    display: none;
+} */
+/* BOX MENU */
+.status{
+    position: relative;
+    top: 130px;
+    left: 30px;
+}
+.grid-title{
+    padding: 18px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.number{
+    font-size: 46px;
+    margin: 9px auto;
+
+}
+/* Dashboard grid */
+.grid-status{
+    width: auto;
+    height: 220px;
+    position: relative;
+    top: 10px;
+    left: 30px;
+    overflow: hidden;
+    z-index: 100;
+
+}
+.grid-status-child{
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-flow: column;
+    position: absolute;
+    width:100%;
+    padding:20px;
+    float: left;
+    overflow-x:scroll;
+    box-sizing: content-box;
+
+}
+.boxes-num{
+    margin: 10px auto;
+    text-align: center;
+  }
+.boxes-icon img{
+    width: 60px;
+}
+
+.boxes-icon{
+    text-align: center;
+}
+.boxes-icon .boxes-icon-img{
+   font-size: 50px;
+  
+}
+
+
+#i-pelanggan{
+    top: -9px;
+}
+.boxes-status{
+    position: static !important;
+    float: left;
+    width: 150px !important ;
+    height: 150px !important;
+    margin-left: 50px;
+   
+}
+
+
+.boxes-container{
+    width: 100% !important;
+    position: relative;
+    top: 120px;
+    left: 100px;
+    z-index: 1;
+}
+
+.table tr td {
+    vertical-align: middle !important;
+    font-size: 16px;
+}
+
+
+
+.boxes{
+    padding: 20px;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0px 0px 34px -7px rgb(199, 199, 199);
+    border-radius: 9px;
+    transition: 0.8s;
+    background-color: white;
+    cursor: pointer;
+}
+.boxes:hover{
+    padding: 20px;
+    width: 150px;
+    height: 150px;
+    box-shadow: 13px 12px 30px 0px rgb(192, 192, 192);
+    border-radius: 9px;
+}
+
+.boxes-grid{
+    overflow: hidden;
+}
+
+
+
+
+.boxes-icon{
+  position: relative;
+  margin: 6px auto;
+  width: 60px;
+}
+
+
+
+.boxes-title{
+    
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+    top: 11px;
+    color:rgb(88, 88, 88);
+    font-weight: bold;
+}
+
+.form-container{
+    top:120px;
+    left: 30px;
+    position: absolute;
+}
+
+.tableData{
+    position: absolute;
+    top: 220px;
+    left: 20px;
+    width: 100%;
+
+}
+.tpembayaran-container{
+    position: relative;
+    top: 80px;
+    left: 30px;
+}
+.table-form-container{
+    position: relative;
+    width: 100%;
+    top: 360px;
+    left: 30px;
+
+}
+
+.form-hide{
+    display: none;
+}
+.data-table{
+    top: 520px;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* MASterData */
+.container-Data{
+    position: relative;
+    top: 200px;
+    left: 30px;
+    width: 800px;
+    margin: 0px auto;
+
+}
+
+.Table-form{
+    width: 100%;
+
+}
+.form-bayar{
+    position: absolute ;
+    top: 90px;
+    left: 30px;
+}
+.form-bayar tr td{
+    padding: 10px;
+}
+#select-nama{
+    width: 100% !important;
+}
+
+.tab-gen tr td{
+   padding: 10px;
+}
+.tab-gen tr td .radio-btn{
+    margin-left: 10px;
+}
+
+.modal-table tr td{
+    padding: 10px;
+}
+/* Button */
+.button-container{
+    position: relative;
+    top: 80px;
+    float: right;
+}
+.btn{
+    padding: 8px 9px;
+    color: #fff;
+    border: 0px;
+    border-radius: 5px;
+
+}
+.btn-input{
+    background-color: rgb(2, 115, 180);
+}
+.btn-input{
+    background-color: rgb(2, 115, 180);
+}
+
+footer{
+    position: relative;
+    bottom: -290px;
+}
+
+
+/* function class */
+.overflow-hidden{
+    overflow: hidden;
+}
+
+.badge {
+    padding: 8px !important;
+}
+
+
+
+/* new implementaiton style  */
+.list-data{
+    list-style: none;
+    display: block;
+    padding: 10px;
+    /* border: solid 0.8px rgb(185, 185, 185); */
+    box-shadow: 0px 0px 15px 5px rgb(219, 219, 219);
+    border-radius: 10px;
+}
