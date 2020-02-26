@@ -30,7 +30,7 @@ class M_Tagihan extends CI_Model
 
     public function GetAlldataWhereKWH($no_kwh)
     {
-        $this->db->select('*');
+        $this->db->select('*, tagihan.status AS status, pelanggan.status AS statuspelanggan');
         $this->db->from('tagihan');
         $this->db->join('pelanggan', 'pelanggan.id_pelanggan = tagihan.id_pelanggan');
         $this->db->join('tarif', 'pelanggan.id_tarif = tarif.id_tarif');
@@ -77,7 +77,7 @@ class M_Tagihan extends CI_Model
     {
         $array = array('id_pelanggan' => $id, 'status' => "Belum Bayar");
         $this->db->where($array); 
-        $this->db->update('tagihan',$tagihan);
+        $this->db->update('tagihan',$tagihan); 
     }
     
 }

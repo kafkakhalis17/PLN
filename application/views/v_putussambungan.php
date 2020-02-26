@@ -20,10 +20,6 @@
 								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
 									aria-controls="home" aria-selected="true">Data Pelanggan</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="pemohon-tab" data-toggle="tab" href="#pemohon" role="tab"
-									aria-controls="profile" aria-selected="false">Data Pemohon</a>
-							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> 
@@ -34,9 +30,9 @@
                                     <div class="col-xl-6"><h4>Cari Data Sambungan</h4></div>
                                     <div class="col-xl-6">
                                        <div class="input-group mb-3">
-                                          <input type="text" class="form-control" id="cari_kwh" placeholder="Seacrh No.KWh" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                          <input type="text" class="form-control" id="cari_kwh" placeholder="Seacrh No.KWh" aria-label="Recipient's username"  aria-describedby="button-addon2">
                                           <div class="input-group-append">
-                                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                                             <button class="btn btn-outline-secondary"  onclick="cari_kwh()"type="button" id="button-addon2">Search</button>
                                           </div>
                                        </div>
                                     </div>
@@ -67,7 +63,7 @@
                                                 </select>
                                              </div>
                                              <div class="form-group col-md-10">
-                                                <input type="text" name="alamat-pelanggan" style="margin-top:33px" required
+                                                <input type="text" name="alamat-pelanggan" id="alamat-plgn" style="margin-top:33px" required
                                                    class="form-control" id="alamat_plgn">
                                                 <small class="form-text text-muted">*Isi dengan nama dusun/jalan, blok,/no rumah
                                                    dan RT RW ex:Jl.Amarta VI Blok db6/No.2 RT.01 RW.05</small>
@@ -86,14 +82,9 @@
                                                 <label for="noktp">NIK</label>
                                                 <input type="text" maxlength="16"  name="noktp" required class="form-control" id="noktp-plgn">
                                              </div>
-                                             <div class="form-group col-md-12">
-                                                <label for="namanpwp">Nama NPWP</label>
-                                                <input type="text"  name="nama-npwp" required class="form-control"
-                                                   id="">
-                                             </div>
-                                             <div class="form-group col-md-12">
-                                                <label for="AlamatNPWP">Alamat NPWP</label>
-                                                <input type="text"  name="alamat-npwp" required class="form-control"  id="">
+															<div class="form-group col-md-12">
+                                                <label for="noktp">NO KWH</label>
+                                                <input type="text" maxlength="16"  name="nokwh" required class="form-control" id="nokwh">
                                              </div>
                                           </div>
                                           <button type="button" onclick="submitform()" class="btn btn-primary">Submit</button>
@@ -104,48 +95,7 @@
                            </div>
                         </div>
                      </div>
-							<div class="tab-pane fade" id="pemohon" role="tabpanel" aria-labelledby="profile-tab">
-								<div class="container">
-									<div class="col-xl-12">
-										<form class="form-pendaftaran" id="form-pemohon">
-											<div class="form-row">
-																		
-												<div class="form-group col-md-6">
-													<label for="exampleInputEmail1">Nama</label>
-													<input type="text" name="nama_pemohon" required class="form-control" id="nama-pemohon">
-												</div>
-												<div class="form-group col-md-6">
-													<label for="exampleInputPassword1">NIK</label>
-													<input type="text" name="noktp_pemohon" maxlength="16" required class="form-control" id="nik-pemohon">
-												</div>
-												<div class="form-group col-md-12">
-													<label for="">Alamat</label>
-													<input type="text" name="alamat_pmh" required class="form-control" id="alamat-pemohon">
-												</div>
-
-												<div class="form-group col-md-6">
-													<label for="Notelp">No telp</label>
-													<input type="text" maxlength="12" name="notelp1_pmh" required class="form-control" id="notelp1-pemohon">
-												</div>
-												<div class="form-group col-md-6">
-													<label for="Notelp">No telp 2</label>
-													<input type="text" maxlength="12" name="notelp2_pmh" required class="form-control" id="notelp2-pemohon">
-													<!-- <small class="form-text text-muted">*Jika anda merasa no telp pertama bisa
-														dihubungi silakan kosongkan </small> -->
-												</div>
-												<div class="form-group col-md-12">
-													<label for="noktp">Email</label>
-													<input type="text" name="email-pemohon" required class="form-control" id="email-pemohon">
-												</div>
-											</div>
-										</form>
-										<div class="form-check form-check-inline">
-											<input class="form-check-input copyvalue" type="checkbox" onclick="copydata()" id="copyvalue">
-											<label class="form-check-label" for="inlineCheckbox1">Copy dari Data Pelanggan</label>
-										</div>
-									</div>
-								</div>
-							</div>
+						
 						</div>
 					</div>
 				</div>
@@ -160,7 +110,7 @@
 				var ktp = $('#noktp-plgn').val();
 				var telp1 = $('#telp1_plgn').val(); 
 				var telp2 = $('#telp2_plgn').val(); 
-				var alamat = $('#alamat_plgn').val();
+				var alamat = $('#alamat-plgn').val();
 
 				$('#nama-pemohon').val(nama);
 				$('#nik-pemohon').val(ktp);
@@ -169,7 +119,12 @@
 				$('#alamat-pemohon').val(alamat);
 			}
 			else if($('.copyvalue').prop("checked") == false){
-				alert("Checkbox is unchecked.");
+					
+				$('#nama-pemohon').val("");
+				$('#nik-pemohon').val("");
+				$('#notelp1-pemohon').val("");
+				$('#notelp2-pemohon').val("");
+				$('#alamat-pemohon').val("");
 			}
 		}
 	</script>
@@ -185,7 +140,7 @@
 			}else{
 				$.ajax({
 					type : 'POST',
-					url  : '<?php echo base_url('LayananPelanggan/inputPermohonan/')?>',
+					url  : '<?php echo base_url('LayananPelanggan/putussambunganinput')?>',
 					data : $('.form-pendaftaran').serialize(),
 					success : function (data) {
 						Swal.fire(
@@ -205,9 +160,21 @@
 			var id = $('#cari_kwh').val();
 			$.ajax({
 				type : 'GET',
-				url : <?= base_url('LayananPelanggan/carikwh/')?>+ id,
+				dataType: 'json', 
+				url : '<?= base_url('LayananPelanggan/carikwh/')?>'+ id,
 				success : function (data) {
-					
+
+					$('#nama-plgn').val(data[0].nama_pelanggan);
+					$('#npwp-plgn').val(data[0].npwp);
+					$('#alamat-plgn').val(data[0].alamat);
+					$('#telp1_plgn').val(data[0].no_telp);
+					$('#telp2_plgn').val(data[0].no_telp2);
+					$('#noktp-plgn').val(data[0].no_ktp);
+					$('#nokwh').val(data[0].nomor_kwh);
+					// $('#namanpwp').val(data[0].notelp);
+					// $('#alamat-npwp').val(data[0].notelp);
+
+
 				}
 			});
 		}

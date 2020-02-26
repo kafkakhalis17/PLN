@@ -3,10 +3,20 @@ class M_Pembayaran extends CI_Model
 {
     public function GetByKWh($kwh)
     {
-
+      $this->db->select("tg.id_tagihan,p.nomor_kwh,p.nama_pelanggan, p.alamat, tg.bulan, tg.tahun, tg.jumlah_meter, t.daya, t.tarifperkwh, tg.status AS status, t.tarif_denda, (jumlah_meter * tarifperkwh) AS bayar");
+      $this->db->from("tagihan tg");
+      // $this->db-join("penggunaan pg", "pg.id_pelanggan=p.id_pelanggan");
+      $this->db->join("pelanggan p", "tg.id_pelanggan = p.id_pelanggan", "inner");
+      $this->db->join("tarif t", "t.id_tarif=p.id_tarif", "inner");
+      $this->db->where("p.nomor_kwh", $kwh);
+      // $this->db->group_by("p.nomor_kwh");
+      // $this->db->group_by("tg.tahun");
+      $this->db->where("tg.status", "belum bayar");
+      $this->db->or_where("tg.status", "nunggak");
+      return $this->db->get();
       // Digunakan untuk mencari pembayaran 
       // Dikalikan dengan tarif
-      return $this->db->query("SELECT * , (jumlah_meter * tarifperkwh) AS bayar FROM v_tagihan Where nomor_kwh={$kwh} AND status='belum bayar' OR status='nunggak'");
+      // return $this->db->query("SELECT * , (jumlah_meter * tarifperkwh) AS bayar FROM v_tagihan Where nomor_kwh={$kwh} AND status='belum bayar' OR status='nunggak'");
     }   
     public function GetByID($id)
     {
@@ -51,6 +61,21 @@ class M_Pembayaran extends CI_Model
       $this->db->where('p.tanggal_pembayaran', date('Y-m-d'));
       $this->db->order_by('p.id_pembayaran','DESC');
       $this->db->limit(10);
+      return $this->db->get();
+    }
+
+    public function historibulanangerai($idadmin)
+    {
+      $this->db->select("*, MONTH(p.tanggal_pembayaran) AS bulanbayar, (jumlah_meter * tarifperkwh) AS total  ");
+      $this->db->from('pembayaran p');
+      $this->db->join('tagihan t', 't.id_tagihan=p.id_tagihan');
+      $this->db->join('pelanggan pg', 'pg.id_pelanggan=p.id_pelanggan');
+      $this->db->join('users us', 'us.id_admin=p.id_admin');
+      $this->db->join('t_gerai tg', 'tg.id_gerai=us.id_gerai');
+      $this->db->join('tarif','tarif.id_tarif = pg.id_tarif');
+      $this->db->where('MONTH(p.tanggal_pembayaran)', date('n'));
+      $this->db->where('p.id_admin',$idadmin);
+      $this->db->order_by('p.id_pembayaran','DESC');
       return $this->db->get();
     }
 }

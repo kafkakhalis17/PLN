@@ -1,4 +1,4 @@
-<?php $this->load->view('template/header_other.php');?>
+	<?php $this->load->view('template/header_other.php');?>
 <div class="container mt-3">
 	<div class="row">
 		<div class="col-xl-12">
@@ -363,7 +363,7 @@
 																?>
 															</select>
 														</div>
-														<div class="form-group col-md-12">
+														<!-- <div class="form-group col-md-12">
 															<label for="daya">Banyak Daya</label>
 															<select class="form-control" name="banyak-daya" id="KeperluanDropdown">
 																<option value="1">1</option>
@@ -374,7 +374,7 @@
 																<option value="6">6</option>
 																<option value="7">7</option>
 															</select>
-														</div>
+														</div> -->
 													</div>
 													<button type="button" onclick="submitform()" class="btn btn-primary">Submit</button>
 												</div>

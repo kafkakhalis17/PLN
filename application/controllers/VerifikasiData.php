@@ -53,10 +53,9 @@ class VerifikasiData extends CI_Controller
         'kode_unik' => $randomstr,
         'id_pmh_plgn' =>  $rowpelanggan['id_pmh_plgn']
       );
-
       $this->M_Crud->input($randomcodedata,'t_kodepembayarandaftar');
       // 
-     
+     $datapembayaran = $this->M_Pembayaran->getbayarpasangabaruwhereid($rowpelanggan['id_pmh_plgn'])->row_array();
       // VERIFICATION EMAIL
         $config = [
           'mailtype'  => 'html',
@@ -94,6 +93,8 @@ class VerifikasiData extends CI_Controller
         $emaildata['peruntukan'] =$rowpelanggan['peruntukan'];
         $emaildata['keperluan'] =$rowpelanggan['keperluan'];
         $emaildata['kodeunik'] =$randomstr;
+        $emaildata['jaminan'] = $datapembayaran['jaminan'];
+        $emaildata['daya'] = $datapembayaran['daya'];
         $emaildata['hargapasang'] = number_format($datapembayaran['harga_pasang'],2,',','.');
         $emaildata['hargatotal'] = number_format($datapembayaran['harga_pasang']+$datapembayaran['jaminan'],2,',','.');
         $emaildata['hargajaminan'] = number_format($datapembayaran['jaminan'],2,',','.');
@@ -161,7 +162,7 @@ class VerifikasiData extends CI_Controller
           // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
   
           // Subject email
-          $this->email->subject('KODE PEMBAYARAN | PLN');
+          $this->email->subject('PEMASANGAN DAYA | PLN');
           $emaildata['namapelanggan'] =$rowpelanggan['nama'];
           $emaildata['nokwh'] = $randomnokwh;
           $emaildata['alamat'] =$rowpelanggan['alamat'];
@@ -177,10 +178,14 @@ class VerifikasiData extends CI_Controller
   
           // Kirim Email
           $this->email->send();
-
+          $status = array(
+            'status' => "3",
+            'tanggal_validate' => Date('Y-m-d')
+          );
+          $this->M_verifikasi->verifikasisambungan($where,$status);
          
-          $this->M_Crud->hapus_data(['id_pmh_plgn' => $rowpelanggan['id_pmh_plgn']], 't_pmh_plgn');
-          $this->M_Crud->hapus_data($wherepemohon, 't_pmh_sambungan');
+          // $this->M_Crud->hapus_data(['id_pmh_plgn' => $rowpelanggan['id_pmh_plgn']], 't_pmh_plgn');
+          // $this->M_Crud->hapus_data($wherepemohon, 't_pmh_sambungan');
       }
     }
 
@@ -236,8 +241,14 @@ class VerifikasiData extends CI_Controller
         $message = $this->load->view('template/emails/Email_unverifikasipelanggan',$emaildata,TRUE);
         $this->email->message($message);
         
-        $this->M_Crud->hapus_data(['id_pmh_plgn' => $id], 't_pmh_plgn');
-        $this->M_Crud->hapus_data(['id_pmh_sambungan' => $rowpelanggan['id_pmh_sambungan']], 't_pmh_sambungan');
+        // Update Status untuk unverifikasi / Tolak Data
+        $status = array(
+          'status' => "400",
+          'tanggal_validate' => Date('Y-m-d')
+        );
+        $this->M_verifikasi->verifikasisambungan($where,$status);
+        // $this->M_Crud->hapus_data(['id_pmh_plgn' => $id], 't_pmh_plgn');
+        // $this->M_Crud->hapus_data(['id_pmh_sambungan' => $rowpelanggan['id_pmh_sambungan']], 't_pmh_sambungan');
         // Tampilkan pesan sukses atau error
         if ($this->email->send()) {
            return $response = "1";
@@ -306,7 +317,7 @@ class VerifikasiData extends CI_Controller
              </tr>
              <tr>
                <td class='pr-4 pl-4'>Alamat</td>
-               <td colspan='3'>{$d->alamat_plgn}</td>
+               <td colspan='3'>{$d->alamat_plgn}, {$d->nama_kelurahan} {$d->nama_kecamatan}<br> {$d->nama_kota}, {$d->provinsi}</td>
              </tr>
              <tr>
                <td class='pr-4 pl-4'>Telp</td>
@@ -320,7 +331,7 @@ class VerifikasiData extends CI_Controller
              </tr>
              <tr>
                <td class='pr-4 pl-4'>Alamat NPWP</td>
-               <td colspan='3'>{$d->alamat_npwp}, {$d->nama_kelurahan} {$d->nama_kecamatan}<br> {$d->nama_kota}, {$d->provinsi}</td>
+               <td colspan='3'>{$d->alamat_npwp}</td>
              </tr>
            </table>
          </div>
@@ -336,10 +347,6 @@ class VerifikasiData extends CI_Controller
              <tr>
                <td>Keperluan</td>
                <td>{$d->keperluan}</td>
-             </tr>
-             <tr>
-               <td>Jumlah Pemasangan</td>
-               <td>{$d->jumlah_pemasangan}</td>
              </tr>
            </table>
          </div>

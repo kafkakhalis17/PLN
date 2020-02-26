@@ -60,12 +60,21 @@ class LayananPelanggan extends CI_Controller
             'alamat_npwp' => $this->input->post('alamat-npwp'),
             'keperluan' => $this->input->post('keperluan'),
             'id_peruntukan' => $this->input->post('peruntukan'),
-            'jumlah_pemasangan' => $this->input->post('banyak-daya'),
+            // 'jumlah_pemasangan' => $this->input->post('banyak-daya'),
             'status' => "0"
          );
       $this->M_Sambungan->inputdatapelanggan($datapelanggan);
     }
+   // Request putus sambungan
+   public function putussambunganinput()
+   {
+      $nokwh = $this->input->post('nokwh');
 
+      $updatestatus = [
+       'status' => 401 
+      ];
+      $this->M_Crud->update_data(['nomor_kwh' => $nokwh],$updatestatus,'pelanggan');
+   }
 
 
    // JSON DATA
@@ -86,9 +95,10 @@ class LayananPelanggan extends CI_Controller
       echo json_encode($data);
    }
 
-   public function carikwh(int $kwh)
+   public function carikwh($kwh)
    {
       $this->db->where('nomor_kwh',$kwh);
+      $this->db->limit("1");
       $data = $this->db->get('pelanggan')->result();
       echo json_encode($data);
    }

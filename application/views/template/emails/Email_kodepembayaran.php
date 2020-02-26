@@ -63,7 +63,7 @@
                </tr>
                <tr>
                   <td style="padding-right:35px">
-                      <span style="font-size:14px;font-family:Arial,Helvetica,sans-serif;">Rupiah Jaminan Langganan (900 x 72)</span>
+                      <span style="font-size:14px;font-family:Arial,Helvetica,sans-serif;">Rupiah Jaminan Langganan (<?=$daya?> x <?= $jaminan?>)</span>
                   </td>
                   <td><span style="font-size:14px;font-family:Arial,Helvetica,sans-serif;">Rp. <?= $hargajaminan?></span></td>
                </tr>

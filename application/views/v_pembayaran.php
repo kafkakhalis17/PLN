@@ -138,29 +138,49 @@
 							'error'
 						);
 					}else{
+
 						$('#Kwht').text(data[0].nomor_kwh);
 						$('.Kwht').text(data[0].nomor_kwh);
 						$('#Name').text(data[0].nama_pelanggan);
 						$('.Name').text(data[0].nama_pelanggan);
-						// console.log(data);
+						console.log(data);
 						var tbody ="";
 						//  Data Tagihan pelanggan
 						for (let i = 0; i < data.length; i++) {
-							// if (data.length) {
-								
-							// }
+							var databayar = parseInt(data[i].bayar);
+							var datadenda = parseInt(data[i].tarif_denda); 
+							var intbayar =  databayar + datadenda;
+							console.log(intbayar);
+							console.log(databayar);
+							console.log(datadenda);
+							
+							
+							
+							var Hargadenda = formatRupiah(String(intbayar), 'Rp.');
 							var Harga = formatRupiah(data[i].bayar, 'Rp.');
+						
 							var Angka = data[i].bayar;
-							tbody += 	'<tr>'+
+							if (data[i].status == 'nunggak') {
+								tbody += 	'<tr>'+
 											// '<td>'+data[i].nomor_kwh+'</td>'+
 											'<td><span class="d-bulan'+i+'">'+data[i].bulan+'</span></td>'+
 											'<td>'+data[i].tahun+'</td>'+
 											'<td>'+data[i].jumlah_meter+' Kwh </td>'+
 											'<td><div class="badge badge-warning">'+data[i].status+'</div></td>'+
-											'<td> <span class="total">'+ Harga+'</span></td>'+
+											'<td> <span class="total">'+ Hargadenda  +'</span></td>'+
+											'<td><center><input id_tagihan="tagihan:'+data[i].id_tagihan+'" type="checkbox" value="'+intbayar+'" name="'+data[i].bulan+''+data[i].tahun+'" class="ctotal"></center></td>'+
+										'</tr>';
+							}else{
+								tbody += '<tr>'+
+											// '<td>'+data[i].nomor_kwh+'</td>'+
+											'<td><span class="d-bulan'+i+'">'+data[i].bulan+'</span></td>'+
+											'<td>'+data[i].tahun+'</td>'+
+											'<td>'+data[i].jumlah_meter+' Kwh </td>'+
+											'<td><div class="badge badge-warning">'+data[i].status+'</div></td>'+
+											'<td> <span class="total">'+ Harga +'</span></td>'+
 											'<td><center><input id_tagihan="tagihan:'+data[i].id_tagihan+'" type="checkbox" value="'+data[i].bayar+'" name="'+data[i].bulan+''+data[i].tahun+'" class="ctotal"></center></td>'+
 										'</tr>';
-																	
+							} 										
 						}
 						$('#tbody-bayar').append(tbody);
 						$('#Search-btn').attr("disabled","disabled");
@@ -342,9 +362,9 @@
 				}
 			});
 		}
-		// $(document).ajaxStop(function(){
-		// 	window.location.reload();
-		// });
+		$(document).ajaxStop(function(){
+			window.location.reload();
+		});
 	});
 
 	

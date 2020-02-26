@@ -9,18 +9,25 @@
             $this->load->model('M_Tarif');
             $this->load->model('M_Crud');
             $this->load->model('M_Pelanggan');
+            $this->load->model('M_Sambungan');
             $this->load->helper('url');
             // Jika ada data yang belum bayar sebelum bulan yang sekarang
             $data = $this->M_Tagihan->checktagihan()->result(); 
             foreach ($data as $d) {	
                 // Jika Tagihan lebih dari 2 kali
                 $numrow = $this->M_Tagihan->checktagihanpelanggan($d->id_pelanggan)->num_rows();
+                $pelangganrow = $this->M_Pelanggan->getpelangganwhereid($d->id_pelanggan)->row_array();
                 if ($numrow > 2) {
                     if (strtotime($d->bulan.'/'.$d->tahun) < strtotime("now")) {
                         $tagihan = [
-                            'status' => 'nunggak'
+                            'status' => 'nunggak',
+                            'status_denda' => '1'
                         ];
-                    //   Update data
+                        $putussementara = [
+                            'status' => '399'
+                        ];
+                        $this->M_Sambungan->updateStatus($pelangganrow['nomor_kwh'],$putussementara);
+                    //   Update data Tagihan
                       $this->M_Tagihan->autodetect($tagihan,$d->id_pelanggan);  
                     }
                 }

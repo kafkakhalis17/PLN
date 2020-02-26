@@ -19,7 +19,64 @@ class Pelanggan extends CI_Controller {
 		$data['tarif'] = $this->M_Tarif->GetJenisTarif()->result();
 		$data['pelanggan'] = $this->M_Pelanggan->GetDataPelanggan()->result();
 		$this->load->view('v_pelanggan',$data);
-   }
+	}
+	
+	
+	public function putussambungan()
+	{
+		$this->load->view('v_verifikasiputus');
+	}
+
+
+	public function getdetailmodal($nokwh)
+	{
+		$data = $this->db->get_where('pelanggan',['nomor_kwh' => $nokwh])->result();
+      foreach ($data as $d ) {
+         // $status = ($d->status == "402") ? "<div class='badge badge-success'>TERVERIFIKASI</div>" : "<div class='badge badge-warning'>BELUM TERVERIFIKASI</div>";
+         echo $row = "<div class='row'> 
+         <div class='col-xl-12'>
+           <div class='widget-heading'>Data Pemohon</div>
+           <div class='widget-subheading opacity-7'>ID PMH {$d->nomor_kwh}</div>
+           <input type='hidden' id='idsambungan' value='{$d->nomor_kwh}'>
+           <table class='table'>
+             <tr>
+               <td class='pr-4 pl-4'>Nama</td>
+               <td>{$d->nama_pelanggan}</td>
+               <td class='pr-4 pl-4'>NIK</td>
+               <td>{$d->no_ktp}</td>
+             </tr>
+             <tr>
+               <td class='pr-4 pl-4'>Alamat</td>
+               <td>{$d->alamat}</td>
+               <td class='pr-4 pl-4'>Telp</td>
+               <td>{$d->no_telp} / {$d->no_telp2}</td>
+             </tr>
+           </table>
+         </div>
+		 </div>";
+		
+      }
+	}
+	public function verifikasiputussambungan($nokwh)
+	{
+		$rowpelanggan = $this->M_Pelanggan->getpelangganwherekwh($nokwh)->row_array();
+		if ($rowpelanggan['status'] == '401') {
+			$status = [
+				'status' => "402"
+			];
+			$this->db->update('pelanggan',$status,['nomor_kwh' => $nokwh]);
+		}elseif ($rowpelanggan['status'] == '399') {
+			$status = [
+				'status' => "400"
+			];
+			$this->db->update('pelanggan',$status,['nomor_kwh' => $nokwh]);
+		}
+	
+	}
+
+
+	
+
    public function input()
    {
 		$NoKwhP = $this->input->post('kwh');
@@ -72,6 +129,15 @@ class Pelanggan extends CI_Controller {
 
 		$this->M_Crud->update_data($where, $data, 'pelanggan');
 		redirect('Pelanggan/index');
+	}
+
+	public function getDataputus()
+	{
+		$this->db->where('status',401);
+		$this->db->or_where('status',400);
+		$this->db->or_where('status',399);
+		$data = $this->db->get('pelanggan')->result();
+		echo json_encode($data);
 	}
 
 }

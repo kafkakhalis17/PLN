@@ -64,10 +64,17 @@ class Pembayaran extends CI_Controller
       </div>
       <div class="form-row">
          <div class="col-12"> 
-            <span>Estimasi Total yang harus dibayar</span>
-            <span style="margin-left:100px"> Rp.'.number_format($data['harga_pasang']+$data['jaminan'],2,',','.').'</span>
+            <span>Biaya Admin</span>
+            <span style="margin-left:100px"> Rp.'.number_format("2500",2,',','.').'</span>
          </div>
       </div>
+      <div class="form-row">
+         <div class="col-12"> 
+            <span>Estimasi Total yang harus dibayar</span>
+            <span style="margin-left:100px"> Rp.'.number_format($data['harga_pasang']+$data['jaminan']+2500,2,',','.').'</span>
+         </div>
+      </div>
+      
       <div class="row">
          <div class="col-12">
             <button onclick="ProsesPayment()" class="btn btn-success btn-lg float-right mt-5">Proses pembayaran</button>
@@ -89,6 +96,13 @@ class Pembayaran extends CI_Controller
        );
        // Update Status verifikasi
        $this->M_verifikasi->verifikasisambungan($where,$data);
+       
+       $datatransaksi = [
+          'id_admin' => $this->session->userdata('id'),
+          'id_pmh_plgn' => $row['id_pmh_plgn'],
+          'tanggal_bayar' => date("Y-m-d")
+       ];
+       $this->M_Crud->input($datatransaksi,'t_transaksipemohon');
        $this->M_Crud->hapus_data(['kode_unik' => $code], 't_kodepembayarandaftar');
    }
 

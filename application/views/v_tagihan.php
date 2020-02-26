@@ -54,7 +54,7 @@
 								<td><?php if ($t->statustagihan == "Belum Bayar" || $t->statustagihan == "nunggak" ) {
 									echo "<span class='badge badge-warning'>".$t->statustagihan."</span>";
 								}else{
-									echo "<span class='badge badge-success'>".$t->status."</span>";
+									echo "<span class='badge badge-success'>".$t->statustagihan."</span>";
 								} ?></td>
 								<td>
 								<!-- <button data-toggle="modal" data-target="#UpMember<?= $t->id_tagihan?>"

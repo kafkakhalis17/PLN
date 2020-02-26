@@ -36,9 +36,14 @@ class M_Sambungan extends CI_Model
       $this->db->from('t_pmh_sambungan');
       $this->db->select('*');
       $this->db->where('nik_pemohon', $nik);
-      $this->db->order_by('nik_pemohon', 'DESC');
+      $this->db->order_by('id_pmh_sambungan', 'DESC');
       $this->db->limit(1);
       return $this->db->get();
+   }
+   
+   public function getnokwh($nokwh)
+   {
+   return $this->db->get_where('pelanggan',['nomor_kwh' => $nokwh]);
    }
 
    public function getdetailpelanggan($id)
@@ -63,5 +68,11 @@ class M_Sambungan extends CI_Model
    public function inputdatapemohon($data)
    {
       $this->db->insert('t_pmh_sambungan',$data);
+   }
+
+   public function updateStatus($nokwh, $status)
+   {
+
+      $this->db->update('pelanggan', $status, ['nomor_kwh'=> $nokwh]);
    }
 }

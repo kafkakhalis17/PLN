@@ -8,6 +8,8 @@ class M_Pelanggan extends CI_Model
       $this->db->select('*');
       $this->db->from('pelanggan');
       $this->db->join('tarif','pelanggan.id_tarif=tarif.id_tarif');
+      $this->db->where_not_in('pelanggan.status', '400');
+      $this->db->where_not_in('pelanggan.status', '402');
       return $this->db->get();
    }
 
@@ -49,6 +51,8 @@ class M_Pelanggan extends CI_Model
       $this->db->from('pelanggan p');
       $this->db->group_by("nomor_kwh");
       $this->db->join('penggunaan pg', 'p.id_pelanggan=pg.id_pelanggan', 'left'); 
+      $this->db->where_not_in('p.status', '400');
+      $this->db->where_not_in('p.status', '402');
       $query = $this->db->get();
       return $query->result();
    }
@@ -56,6 +60,11 @@ class M_Pelanggan extends CI_Model
    public function getpelangganwherekwh($kwh)
    {
     return $this->db->get_where('pelanggan', ['nomor_kwh'=> $kwh]);
+   }
+
+   public function getpelangganwhereid($id)
+   {
+    return $this->db->get_where('pelanggan', ['id_pelanggan'=> $id]);
    }
 
 
